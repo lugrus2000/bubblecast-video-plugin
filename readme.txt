@@ -15,6 +15,9 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Easy readable tag [bubblecast id=123] when editing your posts
 * Install the plugin in couple minutes.
 * See what it looks like on [Bubblecast blog](http://blog.bubble-cast.com/ "Bubblecast plugin for Wordpress in action")
+
+The plugin lets you and your users publishing video to your blog easily. When you’re editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way.  Once you’ve published your post the video player will be shown and your visitors will play the movie.  You’ve got all the power of Wordpress in terms of blogging plus video capabilities.
+
 == Installation ==
 
 1. Upload **bubblecast** directory to wp-content/plugins under your Wordpress home directory
@@ -43,8 +46,6 @@ Find more details at [Bubblecast video plugin for Wordpress](http://bubble-cast.
 * The first version released.
 
 == Why do I want video in my blog? ==
-
-The plugin lets you and your users publishing video to your blog easily. When you’re editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way.  Once you’ve published your post the video player will be shown and your visitors will play the movie.  You’ve got all the power of Wordpress in terms of blogging plus video capabilities.
 
 For example you run a blog about cooking. You watched a TV show about cooking and thought: “Hey! I can record video recipes as well!”. You’ve recorded how you cooked a lobster, now you google for video plugin for Wordpress.  Fortunately,  you  found Bubblecast video plugin, it took you 2 minutes to register, install it and post the video.  You briefly looked through plugin’s features and was struck by another idea: “Hey! My readers can post their video recipes to comment mine. We can create a library of video recipes. I can even make money on that if I gather enough video clips”.
 
