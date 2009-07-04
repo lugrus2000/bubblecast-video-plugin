@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: bubble-cast.com
 Donate link: http://bubble-cast.com
-Tags: video, bubblecast
+Tags: video, bubblecast, UGC, User Generated Content
 Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: trunk
@@ -16,7 +16,10 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Install the plugin in couple minutes.
 * See what it looks like on [Bubblecast blog](http://blog.bubble-cast.com/ "Bubblecast plugin for Wordpress in action")
 
-The plugin lets you and your users publishing video to your blog easily. When you’re editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way.  Once you’ve published your post the video player will be shown and your visitors will play the movie.  You’ve got all the power of Wordpress in terms of blogging plus video capabilities.
+The plugin lets you and your users publishing video to your blog easily. When you’re editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
+
+**Bubblecast services**
+We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html)
 
 == Installation ==
 
