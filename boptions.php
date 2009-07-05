@@ -23,7 +23,7 @@
     }
 ?>
 <div class="wrap" style="padding-top:5px">
-<h2 style="height:50px;background-repeat:no-repeat;background-image:url('<? echo get_option('siteurl').'/wp-content/plugins/bubblecast/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
+<h2 style="height:50px;background-repeat:no-repeat;background-image:url('<? echo get_plugin_base_dir().'/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
 
 <h3 >Bubblecast plugin for Wordpress brings users' video to your blog.</h3>
 <div id="trackbacksdiv" class="postbox " >
@@ -69,7 +69,9 @@ If you still don't have Bubblecast account, please, <a href="<? echo $reg_url;?>
 <input type="hidden" readonly="true" disabled="true" value="<?php echo get_option('bubblecast_site_id'); ?>" />
 <input type="hidden" name="action" value="update" />
 <input type="hidden" name="page_options" value="bubblecast_username,bubblecast_password,bubblecast_language" />
-
+<?php
+    settings_fields( 'bubblecast-group' );
+?>
 <p class="submit">
 <input type="submit" class="button-primary" value="<?php _e('Save and Login') ?>" />
 </p>

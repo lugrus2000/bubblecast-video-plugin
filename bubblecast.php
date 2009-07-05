@@ -11,15 +11,16 @@ require("config.php");
 require_once("bubblecast_utils.php");
 global $embeddedQuickcastMovieURL, $playerMovieURL, $siteId;
 
-$bubblecast_logo = '/wp-content/plugins/bubblecast/i/bubblecast_icon.png';
+function get_bubblecast_logo(){
+    return get_plugin_base_dir().'/i/bubblecast_icon.png';
+}
 function bubblecast_media_buttons_context($context){
-		global $post_ID, $temp_ID,$bubblecast_logo;
+		global $post_ID, $temp_ID;
         global $user_login, $user_email,$admin_email;
-//        $url = get_option('siteurl').'/wp-content/plugins/bubblecast/quickcast.php?user_login='.$user_login.'&amp;user_email='.$user_email.'&amp;admin_email='.$admin_email;
         $uploading_iframe_ID = (int) (0 == $post_ID ? $temp_ID : $post_ID);
         $url = get_option('siteurl').'/wp-admin/media-upload.php?type=image&tab=bubblecastvideos&&post_id='.$uploading_iframe_ID.'&user_login='.$user_login.'&amp;user_email='.$user_email.'&amp;admin_email='.$admin_email;
-		$image_btn = get_option('siteurl').$bubblecast_logo;
-		$image_title = 'bubblecast';
+		$image_btn = get_bubblecast_logo();
+		$image_title = 'Bubblecast video';
 		$out = ' <a href="'.$url.'&amp;TB_iframe=true&amp;height=320&amp;width=400" class="thickbox" title="'.$image_title.'"><img src="'.$image_btn.'" alt="'.$image_title.'" /></a>';
 		return $context.$out;
 }
@@ -48,8 +49,7 @@ function embed_quickcast($content){
 function bubblecast_comment_form($text='') {
     $url = "quickcast_comment.php";
     include($url); 
-    global $bubblecast_logo;
-    $image_btn = get_option('siteurl').$bubblecast_logo;
+    $image_btn = get_bubblecast_logo();
     $v .= '<a href="#bubblecast_comment" rel="bubblecast_comment" class="lbOn"><img src="'.$image_btn.'" /> Add video comment</a>'."\n";
 	echo $v;
 
@@ -59,7 +59,7 @@ function bubblecast_js(){
         global $user_login, $user_email,$admin_email;
         get_currentuserinfo();
         $admin_email = get_option('admin_email');
-        $pluginurl = get_bloginfo('wpurl').'/wp-content/plugins/bubblecast/';
+        $pluginurl = get_plugin_base_dir().'/';
         echo "\n".'<link href="'.$pluginurl.'js/leightbox/css/screen.css" media="screen" rel="stylesheet" type="text/css"/>'."\n";
         echo "\n".'<script src="'.$pluginurl.'js/leightbox/scripts/prototype.js" type="text/javascript"></script>'."\n";
         echo "\n".'<script src="'.$pluginurl.'js/leightbox/scripts/leightbox.js" type="text/javascript"></script>'."\n";
@@ -120,11 +120,21 @@ add_action('save_post', 'bubblecast_save_post',10,2);
 add_action('comment_post', 'bubblecast_comment_post',10,2);
 add_action('edit_comment', 'bubblecast_edit_comment',10,1);
 
+add_action('admin_init', 'reg_bubblecast_settings');
+
+function reg_bubblecast_settings(){
+    register_setting( 'bubblecast-group', 'bubblecast_username' ); 
+    register_setting( 'bubblecast-group', 'bubblecast_password' );
+    register_setting( 'bubblecast-group', 'bubblecast_language' );
+}
 function my_plugin_menu() {
   add_options_page('bubblecast Plugin Options', 'bubblecast', 8, __FILE__, 'my_plugin_options');
 }
 function my_plugin_options() {
     include("boptions.php");
+}
+function get_plugin_base_dir(){
+    return WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__));
 }
 
 ?>
