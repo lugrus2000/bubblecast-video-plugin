@@ -113,14 +113,13 @@ add_action('wp_head', 'on_wp_head');
 add_filter('comment_text', 'bubblecast_comment');
 add_filter('the_content', 'bubblecast_post');
 add_action('comment_form', 'bubblecast_comment_form');
-add_action('admin_menu', 'my_plugin_menu');
 add_action('media_upload_tabs','add_bubblecast_tab');
 add_action('media_upload_bubblecastvideos', 'media_upload_bubblecastvideos');
 add_action('save_post', 'bubblecast_save_post',10,2);
 add_action('comment_post', 'bubblecast_comment_post',10,2);
 add_action('edit_comment', 'bubblecast_edit_comment',10,1);
-
 add_action('admin_init', 'reg_bubblecast_settings');
+add_action('admin_menu', 'my_plugin_menu');
 
 function reg_bubblecast_settings(){
     register_setting( 'bubblecast-group', 'bubblecast_username' ); 
@@ -128,7 +127,20 @@ function reg_bubblecast_settings(){
     register_setting( 'bubblecast-group', 'bubblecast_language' );
 }
 function my_plugin_menu() {
-  add_options_page('bubblecast Plugin Options', 'bubblecast', 8, __FILE__, 'my_plugin_options');
+    $show_bubblecast_options = false;
+    if(function_exists('wpmu_create_user')){
+    // We're in WPMU
+        if(is_site_admin()) {// We should show options page only to WPMU site admin
+            $show_bubblecast_options = true;
+        }
+    }
+    else{
+        $show_bubblecast_options = true;
+    }
+    if($show_bubblecast_options){
+            add_options_page('bubblecast Plugin Options', 'bubblecast', 8, __FILE__, 'my_plugin_options');
+
+    }
 }
 function my_plugin_options() {
     include("boptions.php");

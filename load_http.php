@@ -1,4 +1,7 @@
 <?php
+
+//$INCLUDE_CHECK$
+
 /**
  * See http://www.bin-co.com/php/scripts/load/
  * Version : 2.00.A
