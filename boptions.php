@@ -25,7 +25,7 @@
 <div class="wrap" style="padding-top:5px">
 <h2 style="height:50px;background-repeat:no-repeat;background-image:url('<? echo get_plugin_base_dir().'/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
 
-<h3 >Bubblecast plugin for Wordpress brings users' video to your blog.</h3>
+<h3>Bubblecast plugin for Wordpress brings users' video to your blog.</h3>
 <div id="trackbacksdiv" class="postbox " >
 <div class="inside" style="left:10px;">
 <ul style="list-style:circle;">
@@ -64,6 +64,11 @@ If you still don't have Bubblecast account, please, <a href="<? echo $reg_url;?>
         <option value="ru"<?php if (get_option('bubblecast_language') == 'ru') { ?> selected="selected"<?php } ?>><?php _e('Russian') ?></option>
     </select>
 </td>
+</tr>
+<tr>
+<th colspan="2" align="left">
+<a href="<? echo $reg_url;?>"><?php _e('Get login here') ?></a> &nbsp;<img src = "<? echo get_plugin_base_dir()."/i/go.gif" ?>"/>
+</th>
 </tr>
 </table>
 <input type="hidden" readonly="true" disabled="true" value="<?php echo get_option('bubblecast_site_id'); ?>" />
