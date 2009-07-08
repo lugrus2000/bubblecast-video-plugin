@@ -19,13 +19,18 @@ function onPostInsert(html){
         tinyMCE.selectedInstance.getWin().focus();
         tinyMCE.execCommand('mceInsertContent', false, html);
     } else {
-        win.edInsertContent(win.edCanvas, html);
+	if (win.edInsertContent != null) {
+            win.edInsertContent(win.edCanvas, html);
+        } else {
+    	    // fallback to manual insert
+    	    insertAtCaret(win.document, 'content', html);
+        }
     }
 
 }
 function onCommentInsert(html){
 //    alert("insertAtCaret = " + html);
-    insertAtCaret('comment',html);
+    insertAtCaret(document, 'comment',html);
 }
 </script>
 <style>
@@ -37,7 +42,7 @@ function onCommentInsert(html){
 <?php if (!$siteId): ?>
 <div align="center" style="color: red; padding: 5px;">
 <?php if (bubblecast_is_admin()): ?>
-Please, follow installation instructions to finish setup in your administration console at <b>Site Admin -&gt; Settings -&gt; Bubblecast
+You haven't set up Bubblecast login and password. Please, follow installation instructions to finish setup in your administration console at <b>Site Admin -&gt; Settings -&gt; Bubblecast
 <?php else: ?>
 Bubblecast plugin is not configured properly. Please, contact administrator.
 <?php endif; ?>

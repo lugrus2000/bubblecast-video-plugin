@@ -1,11 +1,11 @@
-function insertAtCaret(areaId, text) {
-    var txtarea = document.getElementById(areaId);
+function insertAtCaret(doc, areaId, text) {
+    var txtarea = doc.getElementById(areaId);
     var scrollPos = txtarea.scrollTop;
     var strPos = 0;
-    var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ? "ff" : (document.selection ? "ie" : false ) );
+    var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ? "ff" : (doc.selection ? "ie" : false ) );
     if (br == "ie") {
         txtarea.focus();
-        var range = document.selection.createRange();
+        var range = doc.selection.createRange();
         range.moveStart('character', -txtarea.value.length);
         strPos = range.text.length;
     } else if (br == "ff") strPos = txtarea.selectionStart;
@@ -15,7 +15,7 @@ function insertAtCaret(areaId, text) {
     strPos = strPos + text.length;
     if (br == "ie") {
         txtarea.focus();
-        var range = document.selection.createRange();
+        var range = doc.selection.createRange();
         range.moveStart('character', -txtarea.value.length);
         range.moveStart('character', strPos);
         range.moveEnd('character', 0);

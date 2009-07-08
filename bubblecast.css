@@ -1,0 +1,15 @@
+.bubblecast_player_wp{
+    width:475px;
+    height:395px
+}
+
+.bubblecast_fl_wp{
+    float:left;
+}
+
+.bubblecast_cfg_err_wp{
+    float:left;
+    color: red;
+    width:100%;
+    font-size:10px
+}
