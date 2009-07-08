@@ -4,7 +4,7 @@ Donate link: http://bubble-cast.com
 Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed video into your posts in couple clicks
 
@@ -53,6 +53,11 @@ Find more details at [Bubblecast video plugin for Wordpress](http://bubble-cast.
 = 1.0.1 =
 * Support for Wordpress MU
 * Critical bug fixed - plugin was not working correctly if the plugin's directory name was other than *bubblecast*
+
+= 1.0.2 =
+* Bug fixed - Quickpress didn't insert video in the post
+* Bug fixed - godaddy restricts HTTP connection to non-default ports, wp admin can't login 
+
 
 == Why do I want video in my blog? ==
 
