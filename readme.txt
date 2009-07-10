@@ -27,8 +27,8 @@ We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wo
 == Installation ==
 
 1. Go to Plugins ->  Add new in your Wordpress Admin
-1. Search for **bubblecast**, click **Install**, then **Activate**
-1. Enter you bubblecast login and password at **Settings -> Bubblecast** and click **Save and Login**. If you haven't got the login so far, please, follow [register here](http://bubble-cast.com/register.html) link in plugin's description and register at Bubblecast.
+1. Search for bubblecast, click Install, then Activate
+1. Enter you bubblecast login and password at Settings -> Bubblecast and click Save and Login. If you haven't got the login so far, please, follow [register here](http://bubble-cast.com/register.html) link in plugin's description and register at Bubblecast.
 1. **WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat\_video\_plugin.php*
 
 Manual installation described here [Bubblecast video plugin for Wordpress](http://bubble-cast.com/wordpress.html)
