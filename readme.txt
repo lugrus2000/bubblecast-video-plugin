@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: bubble-cast.com
 Donate link: http://bubble-cast.com
-Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu
+Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,quicktime,flash,flash player,divx
 Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: 1.0.2
@@ -10,14 +10,15 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 
 == Description ==
 
+* Flash Video player
 * Add video to the post when you're writing it
 * Add video to your comments
-* Easy readable tag [bubblecast id=123] when editing your posts
-* Install the plugin in couple minutes.
+* Record video comment with a webcam
+* Support for mp4,mpeg,mov,flv,3gp,avi
 * WordPress MU is fully supported
-* See what it looks like on [Bubblecast blog](http://blog.bubble-cast.com/ "Bubblecast plugin for Wordpress in action")
+* See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
 
-The plugin lets you and your users publishing video to your blog easily. When you’re editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
+The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
 
 **Bubblecast services**
 
@@ -25,13 +26,12 @@ We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wo
 
 == Installation ==
 
-1. Upload **bubblecast** directory to wp-content/plugins under your Wordpress home directory
-1. Go to Site Admin -> Plugins and click **Activate** plugin 
-1. Go to Site Admin -> Settings -> Bubblecast
-1. Enter you bubblecast login and password and click **Save and Login**. If you haven't got the login so far, please, follow [register here](http://bubble-cast.com/register.html) link in plugin's description and register at Bubblecast.
+1. Go to Plugins ->  Add new in your Wordpress Admin
+1. Search for **bubblecast**, click **Install**, then **Activate**
+1. Enter you bubblecast login and password at **Settings -> Bubblecast** and click **Save and Login**. If you haven't got the login so far, please, follow [register here](http://bubble-cast.com/register.html) link in plugin's description and register at Bubblecast.
 1. **WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat\_video\_plugin.php*
 
-Find more details at [Bubblecast video plugin for Wordpress](http://bubble-cast.com/wordpress.html)
+Manual installation described here [Bubblecast video plugin for Wordpress](http://bubble-cast.com/wordpress.html)
 
 == Screenshots ==
 
