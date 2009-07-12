@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: bubble-cast.com
 Donate link: http://bubble-cast.com
-Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,quicktime,flash,flash player,divx
+Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network
 Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: 1.0.2
@@ -16,6 +16,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Record video comment with a webcam
 * Support for mp4,mpeg,mov,flv,3gp,avi
 * WordPress MU is fully supported
+* Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
 
 The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
