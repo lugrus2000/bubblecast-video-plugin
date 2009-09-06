@@ -1,20 +1,22 @@
 === Plugin Name ===
 Contributors: bubble-cast.com
 Donate link: http://bubble-cast.com
-Tags: video, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,webcamera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network,comment,video comment,record comment
+Tags: video, Youtube, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,webcamera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network,comment,video comment,record comment
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 1.1
+Stable tag: 1.0.3
 
 Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed video into your posts in couple clicks
 
 == Description ==
 
-* Flash Video player
+* Flash Video player with rewinding
 * Add video to the post when you're writing it
 * Add video to your comments
 * Record video comment with a webcam
+* Add **Youtube** video to your post
 * Support for mp4,mpeg,mov,flv,3gp,avi
+* Sidebar widget - recent videos
 * WordPress MU is fully supported
 * Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
@@ -59,6 +61,13 @@ Manual installation described here [Bubblecast video plugin for Wordpress](http:
 * Screencast support - video is saved in original resolution, optimized for screencasting
 * Bug fixed - HTML markup appears in video description
 
+= 1.1 =
+* Youtube support - users will be able to enter Youtube video link and get it in the blog like it was uploaded to bubblecast
+* Sidebar widget - recent videos
+* Italian and Dutch language support 
+* Rewinding in Quickcast player
+* Video playback performance improvement
+* Optimizations for screencasts 
 
 == Why do I want video in my blog? ==
 
