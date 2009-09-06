@@ -43,9 +43,8 @@
 <h2 style="height:50px;background-repeat:no-repeat;background-image:url('<? echo get_plugin_base_dir().'/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
 
 <h3><?php _e('Bubblecast plugin for Wordpress brings users\' video to your blog.', 'bubblecast');?></h3>
-<div id="trackbacksdiv" class="postbox " >
 <div class="inside" style="left:10px;">
-<ul style="list-style:circle;">
+<ul style="list-style:circle;margin-left:30px">
       <li><?php _e('Add video to the post when you\'re writing it', 'bubblecast');?></li>
       <li><?php _e('Add video to your comments', 'bubblecast');?></li>
       <li><?php _e('The tag <b>[bubblecast id=123]</b> is pasted from the widget', 'bubblecast');?></li>
@@ -55,7 +54,7 @@
 <?php _e('Type in your Bubblecast login and password below and log in.', 'bubblecast');?>
 <?php _e('It should be done only once, after successful logon the plugin will remember the credentials.', 'bubblecast');?>
 <?php _e('If you still don\'t have Bubblecast account, please,', 'bubblecast');?> <a href="<? echo $reg_url;?>"><?php _e('register here', 'bubblecast');?></a>
-</div></div>
+</div>
 <br/>
 <br/>
 <form method="post" action="<? echo $action; ?>">
