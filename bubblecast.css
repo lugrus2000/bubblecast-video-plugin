@@ -1,0 +1,34 @@
+.bubblecast_player_wp{
+    width:475px;
+    height:395px
+}
+
+.bubblecast_fl_wp{
+    float:left;
+}
+
+.bubblecast_cfg_err_wp{
+    float:left;
+    color: red;
+    width:100%;
+    font-size:10px
+}
+
+#bubblecast_comment {
+    color: #333;
+	display: none;
+	position: absolute;
+	width: 510px;
+	height: 510px;
+	padding: 1em;
+	border: 1em solid #B8B8B8;
+	background-color: white;
+	text-align: left;
+	z-index:1001;
+	overflow: auto;
+}
+
+.bubblecast_wvp_block {
+    text-align: center;
+    padding: 3px;
+}
