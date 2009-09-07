@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 2.8
 Stable tag: 1.1
 
-Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed video into your posts in couple clicks
+Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed your own or Youtube video into your posts in couple clicks
 
 == Description ==
 
