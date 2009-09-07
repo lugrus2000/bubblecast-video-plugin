@@ -12,7 +12,7 @@
     echo $after_title;
 
     $layout = $options['layout'];
-    $vertical = $layout == 'v';
+    $vertical = $layout == 'v' || empty($layout);
 
     $categoryIds = '';
     $first = true;
