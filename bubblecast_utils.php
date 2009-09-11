@@ -53,4 +53,11 @@ function get_bubblecast_option($opt_name){
         return get_option($opt_name);
     }
 }
+
+function bubblecast_flash_object($width, $height, $video_id, $videoNum,
+        $playerMovieURL, $siteId, $languages) {
+    $flash_obj = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"                width="'.$width.'" height="'.$height.'" id="quickcast'.$video_id.'_'.$videoNum.'" align="middle">            <param name="allowScriptAccess" value="always" />            <param name="movie" value="'.$playerMovieURL.'" />            <param name="flashvars" value="siteId='.$siteId.'&amp;recordEnabled=false&amp;autoPlay=true&amp;isVideo=true&amp;languages=' . $languages . '&amp;pluginMode=wp&amp;streamName='.$video_id.'" />            <param name="quality" value="high" />            <param name="allowfullscreen" value="true"/>            <param name="bgcolor" value="#ededed" />                <embed src="'.$playerMovieURL.'" quality="high" bgcolor="#ededed" width="'.$width.'" height="'.$height.'" name="quickcast'.$video_id.'_'.$videoNum.'" flashvars="siteId='.$siteId.'&amp;recordEnabled=false&amp;autoPlay=true&amp;isVideo=true&amp;languages=' . $languages . '&amp;pluginMode=wp&amp;streamName='.$video_id.'" allowfullscreen="true"                       align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />        </object>';
+    return $flash_obj;
+}
+
 ?>
