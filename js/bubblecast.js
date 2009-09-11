@@ -1,9 +1,35 @@
+var opened_pelem = null;
+var opened_telem = null;
+
 function bubblecastHideElement(elem) {
     elem.style.display = 'none';
 }
 
 function bubblecastShowElement(elem) {
     elem.style.display = 'block';
+}
+
+function bubblecastRecreateElement(elem) {
+    var parentNode = elem.parentNode;
+    var oldInnerHTML = parentNode.innerHTML;
+    parentNode.innerHTML = oldInnerHTML;
+    var width = parentNode.innerHTML.match(/\bwidth=\"?(\d+)\D/)[1];
+    var height = parentNode.innerHTML.match(/\bheight=\"?(\d+)\D/)[1];
+    var videoId = parentNode.innerHTML.match(/\bid=\"?quickcast(\d+)_/)[1];
+    var videoNum = parentNode.innerHTML.match(/\bid=\"?quickcast\d+_(\d+)\D/)[1];
+    var siteId = parentNode.innerHTML.match(/\bsiteId=(\d*)/)[1];
+    var languages = parentNode.innerHTML.match(/\blanguages=([^&]*)/)[1];
+    code = bubblecastFlashObjectCode(width, height, videoId, videoNum, siteId, languages);
+    var open = oldInnerHTML.indexOf('<object');
+    if (open < 0) {
+	open = oldInnerHTML.indexOf('<OBJECT');
+    }
+    var close = oldInnerHTML.indexOf('</object>');
+    if (close < 0) {
+	close = oldInnerHTML.indexOf('</OBJECT>');
+    }
+    var newInnerHTML = oldInnerHTML.substring(0, open) + code + oldInnerHTML.substring(close + '</object>'.length);
+    parentNode.innerHTML = newInnerHTML;
 }
 
 function bubblecastChangeFlashesVisibility(visible, idToIgnore) {
@@ -112,4 +138,36 @@ function insertAtCaret(doc, areaId, formId, areaName, text) {
         txtarea.focus();
     }
     txtarea.scrollTop = scrollPos;
+}
+function bubblecastShowPlayer(playerId,is_wide){
+    var telem = document.getElementById('t' + playerId);
+    bubblecastHideElement(telem);
+    var pelem = document.getElementById('p' + playerId);
+
+    if(opened_pelem != null){
+        bubblecastHideElement(opened_pelem);
+        bubblecastShowElement(opened_telem);
+        bubblecastRecreateElement(opened_pelem);
+    }
+    if(is_wide){
+        pelem.parentNode.removeChild(pelem);
+        document.body.appendChild(pelem);
+        bubblecastShowElement(pelem);
+        bubblecastPositionElementAtScreenCenter(pelem);
+    }
+    else{
+        bubblecastShowElement(pelem);
+    }
+    
+    opened_pelem = pelem;
+    opened_telem = telem;
+}
+function bubblecastHidePlayer(playerId, is_wide){
+    var telem = document.getElementById('t' + playerId);
+    var pelem = document.getElementById('p' + playerId);
+    bubblecastHideElement(pelem);
+    bubblecastShowElement(telem);
+    opened_pelem = null;
+    opened_telem = null;
+//    opened_flashObj.pause();
 }

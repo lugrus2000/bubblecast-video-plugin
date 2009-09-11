@@ -4,7 +4,7 @@
 }
 
 .bubblecast_fl_wp{
-    float:left;
+    /*float:left;*/
 }
 
 .bubblecast_cfg_err_wp{
@@ -31,4 +31,65 @@
 .bubblecast_wvp_block {
     text-align: center;
     padding: 3px;
+}
+.bubblecast_site_link{
+    font-size:10px;
+}
+.bubblecast_fl_wp_thumb{
+    position:relative;
+}
+a.bubblecast_play_btn{
+    position:absolute;
+    top:140px;
+    left:170px;
+    width:135px;
+    height:135px;
+    filter:alpha(opacity=85);
+    -moz-opacity:0.85;
+    -khtml-opacity: 0.85;
+    opacity: 0.85;
+
+}
+
+a.bubblecast_play_btn:hover{
+    filter:alpha(opacity=100);
+    -moz-opacity:1;
+    -khtml-opacity: 1;
+    opacity: 1;
+    cursor:pointer;
+}
+.bubblecast_player {
+    color: #333;
+	display: none;
+	position: relative;
+    
+    width: 475px;
+	height: 375px;
+	z-index:1001;
+	overflow: auto;
+}
+.bubblecast_player_wide{
+    color: #333;
+	display: none;
+	position: absolute;
+    background-color:#fff;
+    width: 825px;
+	height: 645px;
+	z-index:1001;
+	overflow: auto;
+    border: 2px solid #B8B8B8;
+
+}
+.bubblecast_ws_close_btn{
+    margin:1px;
+    padding:0px;
+    background-color:#fff;
+}
+.bubblecast_player_wp img {
+    padding:0;
+    margin:0;
+    border:#ffffff solid 0px !important;
+    background-image:none !important;
+    background-color:transparent!important;
+    background-repeat:no-repeat!important;
 }
