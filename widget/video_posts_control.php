@@ -19,7 +19,10 @@
     }
 
     // build options to be displayed in the form
-    $options = get_option('bubblecast_wvp_options', array());
+    $options = get_option('bubblecast_wvp_options');
+    if(empty($options)){
+        $options = array(); 
+    }
     $options = array_merge($defaultOptions, $options);
     $categories = get_categories(array('hide_empty' => false));
 ?>

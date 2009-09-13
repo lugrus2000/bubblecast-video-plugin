@@ -3,7 +3,10 @@
     $defaultOptions = bubblecast_get_video_posts_widget_default_options();
 
     // build options to be displayed in the form
-    $options = get_option('bubblecast_wvp_options', array());
+    $options = get_option('bubblecast_wvp_options');
+    if(empty($options)){
+        $options = array();
+    }
     $options = array_merge($defaultOptions, $options);
 
     echo $before_widget;
