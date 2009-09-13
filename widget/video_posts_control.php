@@ -23,10 +23,7 @@
     if(empty($options)){
         $options = array(); 
     }
-print_r($defaultOptions);
     $options = array_merge($defaultOptions, $options);
-    echo "uuu";
-print_r($options);
     $categories = get_categories(array('hide_empty' => false));
 ?>
     <p>
