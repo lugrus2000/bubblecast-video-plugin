@@ -71,6 +71,7 @@ Manual installation described here [Bubblecast video plugin for Wordpress](http:
 
 = 1.1.1 =
 * Optimization for multiple videos on blog's page - the thumbnails are shown instead of Flash player for faster page loading. When the thumbnail is clicked the video starts to play
+* Bug fixed - Sidebar widget could not use default options 
 
 == Why do I want video in my blog? ==
 
