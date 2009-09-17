@@ -40,7 +40,7 @@
     }
 ?>
 <div class="wrap" style="padding-top:5px">
-<h2 style="height:50px;background-repeat:no-repeat;background-image:url('<? echo get_plugin_base_dir().'/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
+<h2 style="height:50px;background-repeat:no-repeat;background-image:url('<?php echo get_plugin_base_dir().'/i/bubble-big.gif'; ?>');vertical-align:middle;padding-left:65px;">Bubblecast</h2>
 
 <h3><?php _e('Bubblecast plugin for Wordpress brings users\' video to your blog.', 'bubblecast');?></h3>
 <div class="inside" style="left:10px;">
@@ -53,11 +53,11 @@
 
 <?php _e('Type in your Bubblecast login and password below and log in.', 'bubblecast');?>
 <?php _e('It should be done only once, after successful logon the plugin will remember the credentials.', 'bubblecast');?>
-<?php _e('If you still don\'t have Bubblecast account, please,', 'bubblecast');?> <a href="<? echo $reg_url;?>"><?php _e('register here', 'bubblecast');?></a>
+<?php _e('If you still don\'t have Bubblecast account, please,', 'bubblecast');?> <a href="<?php echo $reg_url;?>"><?php _e('register here', 'bubblecast');?></a>
 </div>
 <br/>
 <br/>
-<form method="post" action="<? echo $action; ?>">
+<form method="post" action="<?php echo $action; ?>">
 <?php
     wp_nonce_field('update-options');
 ?>
@@ -85,7 +85,7 @@
 </tr>
 <tr>
 <th colspan="2" align="left">
-<a href="<? echo $reg_url;?>"><?php _e('Get login here', 'bubblecast') ?></a> &nbsp;<img src = "<? echo get_plugin_base_dir()."/i/go.gif" ?>"/>
+<a href="<?php echo $reg_url;?>"><?php _e('Get login here', 'bubblecast') ?></a> &nbsp;<img src = "<?php echo get_plugin_base_dir()."/i/go.gif" ?>"/>
 </th>
 </tr>
 </table>
