@@ -4,7 +4,7 @@ Donate link: http://bubble-cast.com
 Tags: video, Youtube, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,webcamera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network,comment,video comment,record comment
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 
 Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed your own or Youtube video into your posts in couple clicks
 
@@ -21,7 +21,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
 
-The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
+The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You've got all the power of Wordpress plus video capabilities.
 
 **Bubblecast services**
 
@@ -33,7 +33,7 @@ We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wo
 1. Search for bubblecast, click Install, then Activate
 1. Enter you bubblecast login and password at Settings -> Bubblecast and click Save and Login. 
 
-**WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat\_video\_plugin.php*
+**WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat-video-plugin\_video\_plugin.php*
 
 Manual installation described here [Bubblecast video plugin for Wordpress](http://bubble-cast.com/wordpress.html)
 
@@ -72,6 +72,9 @@ Manual installation described here [Bubblecast video plugin for Wordpress](http:
 = 1.1.1 =
 * Optimization for multiple videos on blog's page - the thumbnails are shown instead of Flash player for faster page loading. When the thumbnail is clicked the video starts to play
 * Bug fixed - Sidebar widget could not use default options 
+
+= 1.1.2 =
+* Bug fixed - Login fails in MU 2.8.4a (http://forum.bubble-cast.com/viewtopic.php?f=3&t=4&p=82#p82) 
 
 == Why do I want video in my blog? ==
 
