@@ -21,7 +21,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
 
-The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You’ve got all the power of Wordpress plus video capabilities.
+The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You've got all the power of Wordpress plus video capabilities.
 
 **Bubblecast services**
 
@@ -33,7 +33,7 @@ We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wo
 1. Search for bubblecast, click Install, then Activate
 1. Enter you bubblecast login and password at Settings -> Bubblecast and click Save and Login. 
 
-**WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat\_video\_plugin.php*
+**WordPress MU Users only**. Copy *mu/sitewide\_bubblecat\_video\_plugin.php* from Bubblecast plugin directory to *wp-content/mu-plugins*. Don't forget to grant *read* permission to your web server to this file. For example on Linux I use *chmod 644 sitewide\_bubblecat-video-plugin\_video\_plugin.php*
 
 Manual installation described here [Bubblecast video plugin for Wordpress](http://bubble-cast.com/wordpress.html)
 

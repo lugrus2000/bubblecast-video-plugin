@@ -2,7 +2,7 @@
 /*
 Plugin Name: Bubblecast Video for Wordpress
 Plugin URI: http://bubble-cast.com/wordpress.html
-Description: Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed video into your posts in couple clicks
+Description: Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed your own or Youtube video into your posts in couple clicks
 Author: bubble-cast.com
 Version: 1.1.2
 Author URI: http://bubble-cast.com/
