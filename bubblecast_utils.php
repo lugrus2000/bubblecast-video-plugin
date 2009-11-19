@@ -13,7 +13,7 @@ function bubblecast_login(){
 }
 function bubblecast_remote_login($bubblecast_username,$bubblecast_password){
         global $authURL;
-        $xml = bubblecast_load($authURL."?username=".$bubblecast_username."&password=".$bubblecast_password,
+        $xml = bubblecast_load($authURL."?username=".$bubblecast_username."&password=".sha1($bubblecast_password),
                 array('return_info'    => true));
         $user_doc = XML_unserialize($xml["body"]);
         $siteId = $user_doc["root"]["siteId"];
@@ -55,9 +55,48 @@ function get_bubblecast_option($opt_name){
 }
 
 function bubblecast_flash_object($width, $height, $video_id, $videoNum,
-        $playerMovieURL, $siteId, $languages) {
-    $flash_obj = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"                width="'.$width.'" height="'.$height.'" id="quickcast'.$video_id.'_'.$videoNum.'" align="middle">            <param name="allowScriptAccess" value="always" />            <param name="movie" value="'.$playerMovieURL.'" />            <param name="flashvars" value="siteId='.$siteId.'&amp;recordEnabled=false&amp;autoPlay=true&amp;isVideo=true&amp;languages=' . $languages . '&amp;pluginMode=wp&amp;streamName='.$video_id.'" />            <param name="quality" value="high" />            <param name="allowfullscreen" value="true"/>            <param name="bgcolor" value="#ededed" />                <embed src="'.$playerMovieURL.'" quality="high" bgcolor="#ededed" width="'.$width.'" height="'.$height.'" name="quickcast'.$video_id.'_'.$videoNum.'" flashvars="siteId='.$siteId.'&amp;recordEnabled=false&amp;autoPlay=true&amp;isVideo=true&amp;languages=' . $languages . '&amp;pluginMode=wp&amp;streamName='.$video_id.'" allowfullscreen="true"                       align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />        </object>';
+        $playerMovieURL, $siteId, $languages, $username, $password_hash) {
+    $flashvars = 'siteId='.$siteId.'&amp;recordEnabled=false&amp;autoPlay=true&amp;isVideo=true&amp;languages=' . $languages . '&amp;pluginMode=wp&amp;embedCodeFormatVersion=2&amp;streamName='.$video_id.'&amp;userName=' . $username . '&amp;password=' . $password_hash;
+    $flashvars = apply_filters('bubblecast_flashvars', $flashvars);
+    $flash_obj = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0"                width="'.$width.'" height="'.$height.'" id="quickcast'.$video_id.'_'.$videoNum.'" align="middle">            <param name="allowScriptAccess" value="always" />            <param name="movie" value="'.$playerMovieURL.'" />            <param name="flashvars" value="' . $flashvars . '" />            <param name="quality" value="high" />            <param name="allowfullscreen" value="true"/>            <param name="bgcolor" value="#ededed" />                <embed src="'.$playerMovieURL.'" quality="high" bgcolor="#ededed" width="'.$width.'" height="'.$height.'" name="quickcast'.$video_id.'_'.$videoNum.'" flashvars="' . $flashvars . '" allowfullscreen="true"                       align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />        </object>';
     return $flash_obj;
+}
+function bubblecast_get_thumbnail($video_id,$post){
+    global $bubblecastThumbUrl;
+    if($video_id){
+        return "$bubblecastThumbUrl?podcastId=$video_id&type=w&forceCheckProvider=true";
+    }
+    else{
+        $thumb = get_post_meta($post->ID, 'thumb', true);
+        if($thumb){
+            return $thumb;
+        }
+        return "$bubblecastThumbUrl?podcastId=0&type=w&forceCheckProvider=false";
+    }
+    return "";
+}
+function bubblecast_get_video_id_from_post($post){
+    $matches = array();
+    $matched = preg_match("/\\[bubblecast\\s*id=([^\\s\\]]+)\\s*.*\\s*\\]/", $post->post_content, $matches);
+    if ($matched > 0) {
+        return  $matches[1];
+    } else {
+        return null;
+    }
+}
+
+function bubblecast_get_video_ids_from_post($post){
+    $matches = array();
+    $matched = preg_match_all("/\\[bubblecast\\s*id=([^\\s\\]]+)\\s*.*\\s*\\]/", $post->post_content, $matches);
+    if ($matched > 0) {
+    	$ids = array();
+    	foreach ($matches[1] as $match) {
+    		$ids[] = $match;
+    	}
+        return $ids;
+    } else {
+        return null;
+    }
 }
 
 ?>

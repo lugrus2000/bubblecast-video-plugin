@@ -1,5 +1,4 @@
 <?php
-
     $defaultOptions = bubblecast_get_video_posts_widget_default_options();
 
     // build options to be displayed in the form
@@ -14,20 +13,41 @@
     echo $options['title'];
     echo $after_title;
 
+    $baseq = 'numberposts=' . $options['videos'] . '&order=DESC&orderby=date';
     $layout = $options['layout'];
-    $vertical = $layout == 'v' || empty($layout);
+    $use_current_cat = $options['use_current_cat'];
+    $vertical = $layout == 'v';
 
-    $categoryIds = '';
-    $first = true;
-    foreach ($options['categories'] as $id) {
-        if (!$first) {
-            $categoryIds .= ',';
-        }
-        $categoryIds .= $id;
-        $first = false;
+    if(is_tag() && $use_current_cat == 'Y'){
+       $q = $baseq . '&tag=' . get_query_var('tag');
     }
-
-    $posts = get_posts('numberposts=' . $options['videos'] . '&order=DESC&orderby=date&category=' . $categoryIds);
+    else{
+        if(is_category() && $use_current_cat == 'Y'){
+            $categories = array(get_query_var('cat'));
+        }
+        else if(is_single() && $use_current_cat == 'Y'){
+            if(function_exists('bubbleprod_get_recent_cats')){ // bubble prod plugin installed
+                $categories = bubbleprod_get_recent_cats();
+            }
+            else{
+                $cats = get_the_category();
+                foreach ($cats as $cur_cat) {
+                    $categories[] = $cur_cat->cat_ID;
+                }
+            }
+        }
+        else{
+            $categories = $options['categories'];
+        }
+        $categoryIds = bubblecast_get_cat_ids_str($categories);
+        $q = $baseq . '&category=' . $categoryIds;
+    }
+    $posts = get_posts($q);
+    if(count($posts) == 0 && $use_current_cat == 'Y'){
+        $categoryIds = bubblecast_get_cat_ids_str($options['categories']);
+        $q = $baseq . '&category=' . $categoryIds;
+        $posts = get_posts($q);
+    }
 
     // outputting table beginning for horizontal layout
     if (!$vertical) : ?>
@@ -39,14 +59,7 @@
     foreach ($posts as $post) :
         
         // locating first [bubblecast] code if exists to show a thumbnail
-        $matches = array();
-        $matched = preg_match("/\\[bubblecast id=(.*?)\\]/", $post->post_content, $matches);
-        if ($matched > 0) {
-            $video_id = $matches[1];
-        } else {
-    	    // do not render anything is no video is in the post
-    	    continue;
-        }
+        $video_id = bubblecast_get_video_id_from_post($post);
 
         $permalink = get_permalink($post->ID);
         $title = get_the_title($post->ID);
@@ -60,11 +73,7 @@
 ?>
         <div class="bubblecast_wvp_block">
             <a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" class="wp_caption"><?php echo $title; ?></a>
-<?php
-            if ($video_id !== null) : ?>
-            <div><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>"><img src="<?php echo "$bubblecastThumbUrl?podcastId=$video_id&type=w&forceCheckProvider=true"; ?>" alt="<?php echo $title; ?>"/></a></div>
-<?php
-            endif; ?>
+            <div><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>"><img src="<?php echo bubblecast_get_thumbnail($video_id, $post); ?>" alt="<?php echo $title; ?>" width="160" height="160"/></a></div>
         </div>
 <?php
 

@@ -15,6 +15,7 @@
         $options['layout'] = $_POST['bubblecast_wvp_layout'];
         $options['videos'] = $_POST['bubblecast_wvp_videos'];
         $options['categories'] = $_POST['bubblecast_wvp_categories'];
+        $options['use_current_cat'] = $_POST['bubblecast_wvp_current_cat'];
         update_option('bubblecast_wvp_options', $options);
     }
 
@@ -55,5 +56,12 @@
                 <option value="<?php echo $category->cat_ID ?>" <?php if (in_array($category->cat_ID, $options['categories'])) {echo 'selected="selected"';} ?>><?php echo $category->name; echo " ({$category->count})";?></option>
             <?php }
         ?>
+        </select>
+    </p>
+    <p>
+        <label for="bubblecast_wvp_current_cat"><?php _e('Get videos from the context');?>:</label>
+        <select name="bubblecast_wvp_current_cat" id="bubblecast_wvp_videos" class="widefat">
+            <option value="Y" <?php selected($options['use_current_cat'], 'Y') ?>><?php _e('Yes', 'bubblecast');?></option>
+            <option value="N" <?php selected($options['use_current_cat'], 'N') ?>><?php _e('No', 'bubblecast');?></option>
         </select>
     </p>

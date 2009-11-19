@@ -2,9 +2,9 @@
 /*
 Plugin Name: Bubblecast Video for Wordpress
 Plugin URI: http://bubble-cast.com/wordpress.html
-Description: Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed your own or Youtube video into your posts in couple clicks
+Description: Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed video into your posts in couple clicks
 Author: bubble-cast.com
-Version: 1.1.2
+Version: 1.1.1
 Author URI: http://bubble-cast.com/
 */
 
@@ -17,6 +17,14 @@ global $embeddedQuickcastMovieURL, $playerMovieURL, $siteId,$videoNum,$wideScree
 
 $videoNum = 0;
 $wideScreenVideos = array();
+
+function bubblecast_get_cat_ids_str(&$categories){
+    if(!is_array($categories)){
+        return "";
+    }
+    return join($categories,",");
+}
+
 function get_bubblecast_logo(){
     return get_plugin_base_dir().'/i/bubblecast_icon.png';
 }
@@ -37,25 +45,94 @@ function bubblecast_post($content){
     return embed_quickcast($content);
 
 }
+function bubble_regexp(){
+    return "/\\[bubblecast\\s*id=([^\\s\\]]+)\\s*(thumbnail=([^\\s\\]]+))?\\s*(player=([^\\s\\]]+))?\\s*.*\\]/";
+}
 function embed_quickcast($content){
-    $q_content = preg_replace_callback("/\\[bubblecast\\s*id=([^\\s\\]].*?)\\s*(wide=([^\\s\\]].*?))*\\s*\\]/","bubblecast_handle_tag_params",$content);
+    $q_content = preg_replace_callback(bubble_regexp(),"bubblecast_handle_tag_params",$content);
     return $q_content;
 }
 function bubblecast_handle_tag_params($matches){
-    global $embeddedQuickcastMovieURL, $playerMovieURL,$comment,$bubblecastThumbUrl,$videoNum,$wideScreenVideos;
+    global $videoNum;
+    
+    get_currentuserinfo();
+    
     $video_id = $matches[1];
-    $width = 475;
-    $height = 375;
-    $bubblecast_player_style = "bubblecast_player";
-    $is_wide = 'false';
-    if($matches[3] == 'true'){
-        $width = 825;
-        $height = 625;
-        $bubblecast_player_style = "bubblecast_player_wide";
-        $is_wide = 'true';
+    $thumbnail_dimensions = $matches[3];
+    $player_dimensions = $matches[5];
+
+    $default_width = 475;
+    $default_height = 375;
+    $min_player_width = 475;
+    $min_player_height = 375;
+    $min_thumbnail_width = 320;
+    $min_thumbnail_height = 240;
+    $max_width = 800;
+    $max_height = 600;
+    
+    $player_width = $default_width;
+    $player_height = $default_height;
+    $thumbnail_width = $default_width;
+    $thumbnail_height = $default_height;
+    
+    $thumbnail_dimensions_matched = preg_match('/^(\d+)x(\d+)$/', $thumbnail_dimensions, $thumbnail_dimensions_matches);
+    $player_dimensions_matched = preg_match('/^(\d+)x(\d+)$/', $player_dimensions, $player_dimensions_matches);
+    $params_valid = $thumbnail_dimensions_matched > 0 && $player_dimensions_matched > 0;
+    if ($params_valid) {
+    	$player_width = $player_dimensions_matches[1];
+    	$player_height = $player_dimensions_matches[2];
+    	$thumbnail_width = $thumbnail_dimensions_matches[1];
+    	$thumbnail_height = $thumbnail_dimensions_matches[2];
     }
-    $siteId = get_bubblecast_option("bubblecast_site_id");
-    if(!$siteId){
+    
+    // thumb dimensions: it must be between minimal and default dimensions
+    $thumbnail_width = min($thumbnail_width, $default_width);
+    $thumbnail_width = max($thumbnail_width, $min_thumbnail_width);
+    $thumbnail_height = min($thumbnail_height, $default_height);
+    $thumbnail_height = max($thumbnail_height, $min_thumbnail_height);
+    
+    $player_width = min($player_width, $max_width);
+    $player_width = max($player_width, $min_player_width);
+    $player_height = min($player_height, $max_height);
+    $player_height = max($player_height, $min_player_height);
+        
+    $ep = bubblecast_get_clickable_video_thumbnail_html($video_id, $videoNum,
+    		$player_width, $player_height, $thumbnail_width, $thumbnail_height);
+    
+    $videoNum++;
+    return $ep;
+}
+
+function bubblecast_get_clickable_video_thumbnail_html($video_id, $videoNum,
+		$player_width, $player_height, $thumbnail_width, $thumbnail_height,
+		$additional_onplay_code = '') {
+    global $embeddedQuickcastMovieURL, $playerMovieURL, $bubblecastThumbUrl;
+    global $current_user;
+    
+    get_currentuserinfo();
+    
+	$is_wide = $player_width > $thumbnail_width || $player_height > $thumbnail_height;
+    $is_wide_string = $is_wide ? 'true' : 'false';
+    
+    $thumbnail_type = ($thumbnail_width > $default_width || $thumbnail_height > $default_height)
+    		? 'o' : 'b';
+    
+    if (!$is_wide) {
+    	$player_width = max($player_width, $thumbnail_width);
+    	$player_height = max($player_height, $thumbnail_height);
+    }
+			
+    $div_width = $player_width;
+    $div_height = $is_wide ? $player_height + 30 : $player_height; // 30 px for Close button
+    
+    $play_button_width = 135;
+    $play_button_height = 135;
+    $play_button_left = (int) ((($thumbnail_width - $play_button_width) / 2));
+    $play_button_top = (int) (($thumbnail_height - $play_button_height) / 2);
+
+    $bubblecast_player_style = $is_wide ? 'bubblecast_player_wide' : 'bubblecast_player';
+    $siteId = get_bubblecast_option('bubblecast_site_id');
+    if (!$siteId) {
         $siteId = bubblecast_login();
     }
     $ep =  '<div class="bubblecast_player_wp">';
@@ -63,19 +140,23 @@ function bubblecast_handle_tag_params($matches){
     if (!$siteId && bubblecast_is_admin()) {
         $ep .= ('<div class="bubblecast_cfg_err_wp">' . __('You haven\'t set up Bubblecast login and password. Please, follow installation instructions to finish setup in your administration console at <b>Site Admin -&gt; Settings -&gt; Bubblecast</b>', 'bubblecast') . ' </div>');
     }
-    $ep .= '<div class="bubblecast_fl_wp_thumb"  id="t'.$video_id.'_'.$videoNum.'"><img src="'.$bubblecastThumbUrl.'?podcastId='.$video_id.'&type=b&forceCheckProvider=true" width="475" height="375"/><a class="bubblecast_play_btn" onclick="bubblecastShowPlayer(\''.$video_id.'_'.$videoNum.'\','.$is_wide.');return true;"><img src="'.get_plugin_base_dir().'/i/play.png"  alt="Play"/></a></div>';
-    $flash_obj = bubblecast_flash_object($width, $height, $video_id, $videoNum, $playerMovieURL, $siteId, get_option('bubblecast_language'));
-    $flash_div_open = '<div class="'.$bubblecast_player_style.'" id="p'.$video_id.'_'.$videoNum.'">';
-    if($is_wide == 'false'){
+    
+    $onclick = 'bubblecastShowPlayer(\''.$video_id.'_'.$videoNum.'\','.$is_wide_string.');';
+    $onclick .= $additional_onplay_code;
+    $onclick = apply_filters('bubblecast_play_button_onclick', $onclick);
+    $onclick .= 'return true;';
+    
+    $ep .= '<div class="bubblecast_fl_wp_thumb"  id="t'.$video_id.'_'.$videoNum.'"><img src="'.$bubblecastThumbUrl.'?podcastId='.$video_id.'&type=' . $thumbnail_type . '&forceCheckProvider=true" width="' . $thumbnail_width . '" height="' . $thumbnail_height . '"/><a class="bubblecast_play_btn" style="left: ' . $play_button_left . 'px; top: ' . $play_button_top . 'px;" onclick="' . $onclick . '"><img src="'.get_plugin_base_dir().'/i/play.png"  alt="Play"/></a></div>';
+    $flash_obj = bubblecast_flash_object($player_width, $player_height, $video_id, $videoNum, $playerMovieURL, $siteId, get_option('bubblecast_language'), $current_user->user_login, $current_user->user_pass);
+    $flash_div_open = '<div class="'.$bubblecast_player_style.'" id="p'.$video_id.'_'.$videoNum.'" style="width: ' . $div_width . 'px; height: ' . $div_height . 'px;">';
+    if (!$is_wide) {
         $flash_div_close = '</div>';
-    }
-    else{
-        $flash_div_close = '<div class="bubblecast_ws_close_btn" align="center"><a href="javascript:bubblecastHidePlayer(\''.$video_id.'_'.$videoNum.'\','.$is_wide.');">'.__("Close").'</a></div>';
+    } else {
+        $flash_div_close = '<div class="bubblecast_ws_close_btn" align="center"><a href="#" onclick="javascript:bubblecastHidePlayer(\''.$video_id.'_'.$videoNum.'\','.$is_wide_string.');return false;">'.__("Close").'</a></div>';
         $flash_div_close .= '</div>';
     }
     $ep .= $flash_div_open.$flash_obj.$flash_div_close;
     $ep .= '</div>';
-    $videoNum++;
     return $ep;
 }
 
@@ -87,10 +168,14 @@ function bubblecast_comment_form($text='') {
 	echo $v;
 }
 function bubblecast_js(){
-        $pluginurl = get_plugin_base_dir().'/';
-        echo "\n".'<link href="'.$pluginurl.'bubblecast.css" media="screen" rel="stylesheet" type="text/css"/>'."\n";
-        echo "\n".'<script src="'.$pluginurl.'js/bubblecast.js" type="text/javascript"></script>'."\n";
-        echo "\n".'<script src="'.$pluginurl.'js/dynamic-js.php" type="text/javascript"></script>'."\n";
+	global $current_user;
+	
+	get_currentuserinfo();
+	
+    $pluginurl = get_plugin_base_dir().'/';
+    echo "\n".'<link href="'.$pluginurl.'bubblecast.css" media="screen" rel="stylesheet" type="text/css"/>'."\n";
+    echo "\n".'<script src="'.$pluginurl.'js/bubblecast.js" type="text/javascript"></script>'."\n";
+    echo "\n".'<script src="'.$pluginurl.'js/dynamic-js.php?username=' . $current_user->user_login . '&password_hash=' . $current_user->user_pass . '" type="text/javascript"></script>'."\n";
 }
 function media_upload_bubblecastvideos()
 {
@@ -117,7 +202,7 @@ function on_admin_head() {
 
 function bubblecast_save_post($postID,$postData){
     global $sendPostDatURL;
-    error_log("bubblecast_save_post = ".$postData->guid);
+    //error_log("bubblecast_save_post = ".$postData->guid);
     if($postData->post_type == "page" || $postData->post_type == "post"){
         $link = get_permalink( $postID );
         bubblecast_send_post_data($sendPostDatURL,$postData->post_content,$link,htmlentities($postData->post_title));
@@ -146,8 +231,13 @@ function bubblecast_get_video_posts_widget_default_options() {
     $defaultCategoryId = get_cat_ID('Video');
     if (!$defaultCategoryId) {
         // trying to create it
-        if (wp_create_category('Video')) {
-            $defaultCategoryId = get_cat_ID('Video');
+        if(function_exists('wp_create_category')){
+            if (wp_create_category('Video')) {
+                $defaultCategoryId = get_cat_ID('Video');
+            } else {
+                // select Uncategorized as a fallback
+                $defaultCategoryId = 0;
+            }
         } else {
             // select Uncategorized as a fallback
             $defaultCategoryId = 0;
@@ -159,7 +249,8 @@ function bubblecast_get_video_posts_widget_default_options() {
         'title' => __('Bubblecast Video Posts', 'bubblecast'),
         'layout' => 'v',
         'videos' => 3,
-        'categories' => array($defaultCategoryId)
+        'categories' => array($defaultCategoryId),
+        'use_current_cat' => 'N'
     );
     return $defaultOptions;
 }
@@ -198,6 +289,7 @@ add_action('init', 'bubblecast_load_textdomain');
 
 // registering widgets
 add_action('init', 'bubblecast_widget_video_posts_register');
+
 
 function bubblecast_load_textdomain() {
     $plugin_dir = basename(dirname(__FILE__));
