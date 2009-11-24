@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: bubble-cast.com
 Donate link: http://bubble-cast.com
-Tags: video, Youtube, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,webcamera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network,comment,video comment,record comment
+Tags: video, Youtube, bubblecast, UGC, User Generated Content, wordpressmu, wpmu,mp4,mpeg,mov,flv,3gp,avi,webcam,camera,webcamera,quicktime,flash,flash player,divx,facebook,myspace,livejournal,share,embed,social network,comment,video comment,record comment,widget
 Requires at least: 2.7
 Tested up to: 2.8
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 
 Bubblecast video plugin brings in video capabilities to your blog. It can upload, record and embed your own or Youtube video into your posts in couple clicks
 
@@ -17,6 +17,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Add **Youtube** video to your post
 * Support for mp4,mpeg,mov,flv,3gp,avi
 * Sidebar widget - recent videos
+* Set video player dimensions
 * WordPress MU is fully supported
 * Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
@@ -25,7 +26,9 @@ The plugin lets you and your users publishing video to your blog easily. When yo
 
 **Bubblecast services**
 
-We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html)
+Besides [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) we also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/phpbb.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html).
+
+[And here you can learn about our way to turn video into money](http://bubblesoftstore.com/video-monetization/)
 
 == Installation ==
 
@@ -75,6 +78,10 @@ Manual installation described here [Bubblecast video plugin for Wordpress](http:
 
 = 1.1.2 =
 * Bug fixed - Login fails in MU 2.8.4a (http://forum.bubble-cast.com/viewtopic.php?f=3&t=4&p=82#p82) 
+
+= 1.2.0 =
+* You can now define dimensions of thumbnail and player
+* New option in Recent videos widget - get posts from the category being shown instead of static predefined category
 
 == Why do I want video in my blog? ==
 
