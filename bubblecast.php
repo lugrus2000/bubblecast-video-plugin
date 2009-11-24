@@ -86,9 +86,9 @@ function bubblecast_handle_tag_params($matches){
     }
     
     // thumb dimensions: it must be between minimal and default dimensions
-    $thumbnail_width = min($thumbnail_width, $default_width);
+    $thumbnail_width = min($thumbnail_width, $max_width);
     $thumbnail_width = max($thumbnail_width, $min_thumbnail_width);
-    $thumbnail_height = min($thumbnail_height, $default_height);
+    $thumbnail_height = min($thumbnail_height, $max_height);
     $thumbnail_height = max($thumbnail_height, $min_thumbnail_height);
     
     $player_width = min($player_width, $max_width);

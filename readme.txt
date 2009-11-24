@@ -17,7 +17,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Add **Youtube** video to your post
 * Support for mp4,mpeg,mov,flv,3gp,avi
 * Sidebar widget - recent videos
-* Adjust video player dimensions
+* Set video player dimensions
 * WordPress MU is fully supported
 * Share the video in more than 30 social services
 * See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
@@ -26,7 +26,7 @@ The plugin lets you and your users publishing video to your blog easily. When yo
 
 **Bubblecast services**
 
-We also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html)
+Besides [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) we also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/phpbb.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html)
 
 == Installation ==
 
@@ -79,7 +79,7 @@ Manual installation described here [Bubblecast video plugin for Wordpress](http:
 
 = 1.2.0 =
 * You can now define dimensions of thumbnail and player
-* Recent videos widget can get posts from the current category context
+* New option in Recent videos widget - get posts from the category being shown instead of static predefined category
 
 == Why do I want video in my blog? ==
 
