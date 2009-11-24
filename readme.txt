@@ -20,7 +20,7 @@ Bubblecast video plugin brings in video capabilities to your blog. It can upload
 * Set video player dimensions
 * WordPress MU is fully supported
 * Share the video in more than 30 social services
-* See what it looks like on [Bubblecast blog](http://demo.bubble-cast.com/wordpress "Bubblecast plugin for Wordpress in action")
+* See what it looks like on [Bubblecast blog](http://blog.bubble-cast.com "Bubblecast plugin for Wordpress in action")
 
 The plugin lets you and your users publishing video to your blog easily. When you're editing your post you can click Bubblecast icon in Upload/Insert section, record or upload your video and have it embedded into the post immediately.  Users can add video comments to your posts in the same way. You've got all the power of Wordpress plus video capabilities.
 
