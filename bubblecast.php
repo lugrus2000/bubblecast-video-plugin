@@ -136,7 +136,7 @@ function bubblecast_get_clickable_video_thumbnail_html($video_id, $videoNum,
         $siteId = bubblecast_login();
     }
     $ep =  '<div class="bubblecast_player_wp">';
-    $ep .= '<div class="bubblecast_fl_wp"><a href="http://bubble-cast.com/wordpress.html" class="bubblecast_site_link">http://bubble-cast.com</a></div>';
+    $ep .= '<div class="bubblecast_fl_wp"><a href="http://bubblesoftstore.com" class="bubblecast_site_link">http://bubblesoftstore.com</a></div>';
     if (!$siteId && bubblecast_is_admin()) {
         $ep .= ('<div class="bubblecast_cfg_err_wp">' . __('You haven\'t set up Bubblecast login and password. Please, follow installation instructions to finish setup in your administration console at <b>Site Admin -&gt; Settings -&gt; Bubblecast</b>', 'bubblecast') . ' </div>');
     }

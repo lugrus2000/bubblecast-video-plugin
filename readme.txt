@@ -26,7 +26,9 @@ The plugin lets you and your users publishing video to your blog easily. When yo
 
 **Bubblecast services**
 
-Besides [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) we also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/phpbb.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html)
+Besides [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/wordpress.html) we also provide [Bubblecast video MOD for phpBB forum](http://bubble-cast.com/phpbb.html) and [Bubblecast video widgets for website](http://bubble-cast.com/website.html).
+
+[And here you can learn about our way to turn video into money](http://bubblesoftstore.com/video-monetization/)
 
 == Installation ==
 
