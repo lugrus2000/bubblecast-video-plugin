@@ -1,5 +1,5 @@
-var opened_pelem = null;
-var opened_telem = null;
+var opened_playerId = null;
+var opened_is_wide;
 
 function bubblecastHideElement(elem) {
     elem.style.display = 'none';
@@ -140,15 +140,16 @@ function insertAtCaret(doc, areaId, formId, areaName, text) {
     txtarea.scrollTop = scrollPos;
 }
 function bubblecastShowPlayer(playerId,is_wide){
+    if (opened_playerId != null){
+        bubblecastHidePlayer(opened_playerId, opened_is_wide);
+    }
+	
     var telem = document.getElementById('t' + playerId);
-    bubblecastHideElement(telem);
+    if (!is_wide) {
+    	bubblecastHideElement(telem);
+    }
     var pelem = document.getElementById('p' + playerId);
 
-    if(opened_pelem != null){
-        bubblecastHideElement(opened_pelem);
-        bubblecastShowElement(opened_telem);
-        bubblecastRecreateElement(opened_pelem);
-    }
     if(is_wide){
         pelem.parentNode.removeChild(pelem);
         document.body.appendChild(pelem);
@@ -159,15 +160,17 @@ function bubblecastShowPlayer(playerId,is_wide){
         bubblecastShowElement(pelem);
     }
     
-    opened_pelem = pelem;
-    opened_telem = telem;
+    opened_playerId = playerId;
+    opened_is_wide = is_wide;
 }
 function bubblecastHidePlayer(playerId, is_wide){
     var telem = document.getElementById('t' + playerId);
     var pelem = document.getElementById('p' + playerId);
     bubblecastHideElement(pelem);
-    bubblecastShowElement(telem);
+    if (!is_wide) {
+    	bubblecastShowElement(telem);
+    }
     opened_pelem = null;
     opened_telem = null;
-//    opened_flashObj.pause();
+    opened_playerId = null;
 }

@@ -39,8 +39,6 @@
 }
 a.bubblecast_play_btn{
     position:absolute;
-    top:140px;
-    left:170px;
     width:135px;
     height:135px;
     filter:alpha(opacity=85);
@@ -72,8 +70,6 @@ a.bubblecast_play_btn:hover{
 	display: none;
 	position: absolute;
     background-color:#fff;
-    width: 825px;
-	height: 645px;
 	z-index:1001;
 	overflow: auto;
     border: 2px solid #B8B8B8;
@@ -91,4 +87,9 @@ a.bubblecast_play_btn:hover{
     background-image:none !important;
     background-color:transparent!important;
     background-repeat:no-repeat!important;
+}
+.bubble_prod_cats{
+    margin:0 5px 5px 0px;
+    font-weight:bold;
+    vertical-align:middle;
 }
