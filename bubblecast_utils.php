@@ -85,6 +85,16 @@ function bubblecast_get_video_id_from_post($post){
     }
 }
 
+function bubblecast_get_video_id_and_player_dimensions_from_post($post){
+    $matches = array();
+    $matched = preg_match("/\\[bubblecast\\s*id=([^\\s\\]]+)\\s+.*\\bplayer=(\\d+)x(\\d+)\\s*.*\\s*\\]/", $post->post_content, $matches);
+    if ($matched > 0) {
+        return array($matches[1], $matches[2], $matches[3]);
+    } else {
+        return null;
+    }
+}
+
 function bubblecast_get_video_ids_from_post($post){
     $matches = array();
     $matched = preg_match_all("/\\[bubblecast\\s*id=([^\\s\\]]+)\\s*.*\\s*\\]/", $post->post_content, $matches);
