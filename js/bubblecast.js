@@ -82,6 +82,39 @@ function bubblecastPositionElementAtScreenCenter(elem) {
     elem.style.top = top + 'px';
 }
 
+function bubblecastPositionElementAtPoint(elem, point) {
+    var windowWidth;
+    var windowHeight;
+    if (window.innerWidth) {
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+    } else if (document.documentElement.clientWidth) {
+        windowWidth = document.documentElement.clientWidth;
+        windowHeight = document.documentElement.clientHeight;
+    } else {
+        windowWidth = document.body.clientWidth;
+        windowHeight = document.body.clientHeight;
+    }
+    
+    var pointX = point.x;
+    var pointY = point.y;
+    
+    var left = pointX - Math.round(elem.offsetWidth / 2);
+    var top = pointY - Math.round(elem.offsetHeight / 2);
+    if (left + elem.offsetWidth > windowWidth) {
+    	left = windowWidth - elem.offsetWidth - 30;
+    }
+    if (top + elem.offsetHeight > windowHeight) {
+    	top = windowHeight - elem.offsetHeight - 30;
+    }
+    if (left < 0) left = 0;
+    if (top < 0) top = 0;
+    left += Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
+    top += Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+    elem.style.left = left + 'px';
+    elem.style.top = top + 'px';
+}
+
 function showBubblecastComment() {
     var elem = document.getElementById('bubblecast_comment');
     // moving element to the top level in the hierarchy to avoid clipping in
@@ -139,7 +172,7 @@ function insertAtCaret(doc, areaId, formId, areaName, text) {
     }
     txtarea.scrollTop = scrollPos;
 }
-function bubblecastShowPlayer(playerId,is_wide){
+function bubblecastShowPlayer(playerId, is_wide, point) {
     if (opened_playerId != null){
         bubblecastHidePlayer(opened_playerId, opened_is_wide);
     }
@@ -154,7 +187,11 @@ function bubblecastShowPlayer(playerId,is_wide){
         pelem.parentNode.removeChild(pelem);
         document.body.appendChild(pelem);
         bubblecastShowElement(pelem);
-        bubblecastPositionElementAtScreenCenter(pelem);
+        if (point == null) {
+        	bubblecastPositionElementAtScreenCenter(pelem);
+        } else {
+        	bubblecastPositionElementAtPoint(pelem, point);
+        }
     }
     else{
         bubblecastShowElement(pelem);
