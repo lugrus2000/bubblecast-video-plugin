@@ -10,6 +10,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Italian\n"
 
+msgid "Bubblecast video"
+msgstr "Bubblecast video"
+
 msgid "Login to bubblecast failed."
 msgstr "Accesso a Bubblecast non riuscito."
 

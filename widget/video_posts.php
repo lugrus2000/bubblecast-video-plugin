@@ -26,14 +26,9 @@
             $categories = array(get_query_var('cat'));
         }
         else if(is_single() && $use_current_cat == 'Y'){
-            if(function_exists('bubbleprod_get_recent_cats')){ // bubble prod plugin installed
-                $categories = bubbleprod_get_recent_cats();
-            }
-            else{
-                $cats = get_the_category();
-                foreach ($cats as $cur_cat) {
-                    $categories[] = $cur_cat->cat_ID;
-                }
+            $cats = get_the_category();
+            foreach ($cats as $cur_cat) {
+                $categories[] = $cur_cat->cat_ID;
             }
         }
         else{

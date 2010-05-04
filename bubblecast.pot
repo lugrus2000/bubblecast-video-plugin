@@ -1,3 +1,11 @@
+msgid "Bubblecast video"
+msgstr ""
+
+msgid "Sitemap will start building in a couple of seconds. This may take some time."
+msgstr ""
+
+msgid "Generate Video Sitemap"
+msgstr ""
 
 msgid "Login to bubblecast failed."
 msgstr ""

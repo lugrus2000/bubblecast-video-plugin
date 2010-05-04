@@ -10,6 +10,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Russian\n"
 
+msgid "Bubblecast video"
+msgstr "Видео Bubblecast"
+
+msgid "Sitemap will start building in a couple of seconds. This may take some time."
+msgstr "Генерация карты сайта начнётся через пару секунд. Это может занять какое-то время."
+
+msgid "Generate Video Sitemap"
+msgstr "Генерировать видео-sitemap"
+
 msgid "Login to bubblecast failed."
 msgstr "Не удалось зайти на bubblecast."
 
